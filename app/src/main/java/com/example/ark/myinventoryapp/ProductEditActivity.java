@@ -62,6 +62,9 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
     private EditText mInputPrice;
     private EditText mInputQty;
     private EditText mInputCellnbr;
+    public EditText mInputSize;
+    public EditText mInputColor;
+
     private boolean mProdDetailsChanged = false;
     private ImageView mImageView;
     private TextView mTextView;
@@ -121,6 +124,10 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
         mInputPrice = (EditText) findViewById(R.id.edit_product_price);
         mInputQty = (EditText) findViewById(R.id.edit_product_quantity);
         mInputCellnbr = (EditText) findViewById(R.id.edit_supplier_contact);
+        mInputSize = (EditText) findViewById(R.id.edit_product_sizename);
+        mInputColor = (EditText) findViewById(R.id.edit_product_color);
+
+
         addQuantity = (Button) findViewById(R.id.increment_quantity);
         sellQuantity = (Button) findViewById(R.id.decrement_quantity);
 
@@ -129,6 +136,9 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
         mInputPrice.setOnTouchListener(mTouchListener);
         mInputQty.setOnTouchListener(mTouchListener);
         mInputCellnbr.setOnTouchListener(mTouchListener);
+        mInputSize.setOnTouchListener(mTouchListener);
+        mInputColor.setOnTouchListener(mTouchListener);
+
         mUploadImage.setOnTouchListener(mTouchListener);
         addQuantity.setOnTouchListener(mTouchListener);
         sellQuantity.setOnTouchListener(mTouchListener);
@@ -275,15 +285,18 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
         String priceString = mInputPrice.getText().toString().trim();
         String quantityString = mInputQty.getText().toString().trim();
         String contactString = mInputCellnbr.getText().toString().trim();
+        String sizeString = mInputSize.getText().toString().trim();
+        String colorString = mInputColor.getText().toString().trim();
+
 
         if (mCurrentProductUri == null &&
                 TextUtils.isEmpty(nameString) && TextUtils.isEmpty(priceString) &&
-                TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(contactString) && mUri == null) {
+                TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(contactString) && TextUtils.isEmpty(sizeString) && TextUtils.isEmpty(colorString) && mUri == null) {
             flag = 1;
             return;
         }
         if ((TextUtils.isEmpty(contactString)) || (TextUtils.isEmpty(nameString)) || (TextUtils.isEmpty(priceString)) ||
-                (TextUtils.isEmpty(quantityString))) {
+                (TextUtils.isEmpty(quantityString)) || (TextUtils.isEmpty(sizeString)) || (TextUtils.isEmpty(colorString)) ) {
             Toast.makeText(this, getString(R.string.prompt_for_details), Toast.LENGTH_SHORT).show();
             flag = 0;
             return;
@@ -302,6 +315,9 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, quantityString);
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_IMAGE, imageString);
         values.put(ProductContract.ProductEntry.COLUMN_SUPPLIER_NBR, contactString);
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_SIZENAME, sizeString);
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_COLOR, colorString);
+
 
 
         int quantity = 0;
@@ -412,7 +428,10 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
                 ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE,
                 ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY,
                 ProductContract.ProductEntry.COLUMN_PRODUCT_IMAGE,
-                ProductContract.ProductEntry.COLUMN_SUPPLIER_NBR};
+                ProductContract.ProductEntry.COLUMN_SUPPLIER_NBR,
+                ProductContract.ProductEntry.COLUMN_PRODUCT_SIZENAME,
+                ProductContract.ProductEntry.COLUMN_PRODUCT_COLOR};
+
 
         return new CursorLoader(this,   // Parent activity context
                 mCurrentProductUri,         // Query the content URI for the current product
@@ -435,12 +454,18 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
             int quantityColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY);
             int contactColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_SUPPLIER_NBR);
             int imageColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_IMAGE);
+            int sizeColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_SIZENAME);
+            int colorColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_COLOR);
+
 
             String name = cursor.getString(nameColumnIndex);
             int price = cursor.getInt(priceColumnIndex);
             quantity = cursor.getInt(quantityColumnIndex);
             contact = cursor.getString(contactColumnIndex);
+            String size = cursor.getString(sizeColumnIndex);
             String image = cursor.getString(imageColumnIndex);
+            String color = cursor.getString(colorColumnIndex);
+
 
             mUri = Uri.parse(image);
 
@@ -448,6 +473,7 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
             mInputPrice.setText(Integer.toString(price));
             mInputQty.setText(Integer.toString(quantity));
             mInputCellnbr.setText(contact);
+            mInputSize.setText(size);
             mImageView.setImageBitmap(getBitmapFromUri(mUri));
         }
     }
@@ -458,6 +484,7 @@ public class ProductEditActivity extends AppCompatActivity implements LoaderMana
         mInputPrice.setText("");
         mInputQty.setText("");
         mInputCellnbr.setText("");
+        mInputSize.setText("");
         mImageView.setImageBitmap(null);
     }
 

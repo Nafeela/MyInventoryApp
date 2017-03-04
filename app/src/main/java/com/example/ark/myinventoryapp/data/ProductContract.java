@@ -34,6 +34,8 @@ public final class ProductContract {
         public final static String COLUMN_PRODUCT_QUANTITY = "quantity";
         public final static String COLUMN_PRODUCT_IMAGE = "image";
         public final static String COLUMN_SUPPLIER_NBR = "contact";
+        public final static String COLUMN_PRODUCT_SIZENAME = "size";
+        public final static String COLUMN_PRODUCT_COLOR = "color";
 
     }
 }

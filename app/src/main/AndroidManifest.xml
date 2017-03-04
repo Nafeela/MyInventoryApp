@@ -4,11 +4,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ProductListActivity"
+            android:name="com.example.ark.myinventoryapp.ProductListActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,14 +17,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ProductEditActivity">
+        <activity android:name="com.example.ark.myinventoryapp.ProductEditActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.ark.myinventoryapp.ProductListActivity" />
         </activity>
 
         <provider
-            android:name=".data.ProductProvider"
+            android:name="com.example.ark.myinventoryapp.data.ProductProvider"
             android:authorities="com.example.ark.myinventoryapp"
             android:exported="false" />
     </application>

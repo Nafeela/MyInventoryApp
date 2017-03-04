@@ -56,8 +56,47 @@
             android:textColor="@color/fontColor"
             tools:text="5"
             android:textAlignment="textStart" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/size"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/fontColor" />
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/fontColor"
+            tools:text="M"
+            android:textAlignment="textStart" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/color"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/fontColor" />
+        <TextView
+            android:id="@+id/color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/fontColor"
+            tools:text="Blue"
+            android:textAlignment="textStart" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <Button
+
+    <Button
             android:id="@+id/button_sell"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"

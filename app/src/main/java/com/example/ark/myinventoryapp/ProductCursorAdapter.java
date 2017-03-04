@@ -45,6 +45,8 @@ public class ProductCursorAdapter extends CursorAdapter {
         int nameColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE);
         int quantityColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY);
+        int sizeColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_SIZENAME);
+        int colorColumnIndex = cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_COLOR);
         int itemIdIndex = cursor.getColumnIndex(ProductContract.ProductEntry._ID);
         final int itemId = cursor.getInt(itemIdIndex);
 

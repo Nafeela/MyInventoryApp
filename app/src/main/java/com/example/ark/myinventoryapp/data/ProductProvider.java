@@ -102,6 +102,15 @@ public class ProductProvider extends ContentProvider {
         if (contact == null) {
             throw new IllegalArgumentException("Supplier requires valid contact");
         }
+        String size = values.getAsString(ProductEntry.COLUMN_PRODUCT_SIZENAME);
+        if (size == null) {
+            throw new IllegalArgumentException("Supplier requires valid size");
+        }
+        String color = values.getAsString(ProductEntry.COLUMN_PRODUCT_COLOR);
+        if (color == null) {
+            throw new IllegalArgumentException("Supplier requires valid color");
+        }
+
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
@@ -165,6 +174,19 @@ public class ProductProvider extends ContentProvider {
                 throw new IllegalArgumentException("Enter a valid Contact nbr");
             }
         }
+        if (values.containsKey(ProductEntry.COLUMN_PRODUCT_SIZENAME)) {
+            String size = values.getAsString(ProductEntry.COLUMN_PRODUCT_SIZENAME);
+            if (size == null) {
+                throw new IllegalArgumentException("Product requires a size");
+            }
+        }
+        if (values.containsKey(ProductEntry.COLUMN_PRODUCT_COLOR)) {
+            String color = values.getAsString(ProductEntry.COLUMN_PRODUCT_COLOR);
+            if (color == null) {
+                throw new IllegalArgumentException("Enter a valid Contact nbr");
+            }
+        }
+
 
         if (values.size() == 0) {
             return 0;

@@ -64,14 +64,17 @@ public class ProductListActivity extends AppCompatActivity implements LoaderMana
 
     private void insertProduct() {
 
-        Uri uri = Uri.parse("android.resource://com.example.ark.myinventoryapp/drawable/murukku");
+        Uri uri = Uri.parse("android.resource://com.example.example.myinventory/drawable/murukku");
         String image_path = uri.toString().trim();
         ContentValues values = new ContentValues();
-        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME, "Murukku");
-        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE, 50);
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME, "Kurthi");
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE, 100);
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, 5);
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_IMAGE, image_path);
         values.put(ProductContract.ProductEntry.COLUMN_SUPPLIER_NBR, "9898989898");
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_SIZENAME, "M");
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_COLOR, "Red");
+
 
 
         Uri newUri = getContentResolver().insert(ProductContract.ProductEntry.CONTENT_URI, values);
@@ -110,9 +113,13 @@ public class ProductListActivity extends AppCompatActivity implements LoaderMana
                 ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE,
                 ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY,
                 ProductContract.ProductEntry.COLUMN_PRODUCT_IMAGE,
-                ProductContract.ProductEntry.COLUMN_SUPPLIER_NBR};
+                ProductContract.ProductEntry.COLUMN_SUPPLIER_NBR,
+                ProductContract.ProductEntry.COLUMN_PRODUCT_SIZENAME,
+                ProductContract.ProductEntry.COLUMN_PRODUCT_COLOR};
 
-        return new CursorLoader(this,   // Parent activity context
+
+
+    return new CursorLoader(this,   // Parent activity context
                 ProductContract.ProductEntry.CONTENT_URI,   // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
